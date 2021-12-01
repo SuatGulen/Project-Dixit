@@ -1,0 +1,9 @@
+<div>
+  <label for="new-user">Username: </label>
+  <input id="new-user" #userName/>
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="OnClick(userName.value);">
+    submit
+  </button>
+</div>

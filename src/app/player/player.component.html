@@ -1,0 +1,12 @@
+<div class="p-16">
+  <p class="text-center">These are your cards</p>
+
+  <div class="grid p-16">
+    <app-cards *ngFor="let c of cards; let idx=index" [data]="c" (cardClicked)="cardClicked(idx)">
+    </app-cards>
+  </div>
+    <mat-label>Wait until the storyteller gives you a clue</mat-label><br>
+
+  <b>Clue:{{playerClue}}</b>
+
+</div>

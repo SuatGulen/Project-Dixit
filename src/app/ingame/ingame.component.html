@@ -1,0 +1,9 @@
+<app-userlist></app-userlist>
+
+<div *ngIf="username!= null && username==='admin'">
+  <app-storyteller></app-storyteller>
+</div>
+<div *ngIf="username!=='admin'">
+  <app-player></app-player>
+</div>
+

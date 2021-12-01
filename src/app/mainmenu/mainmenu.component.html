@@ -1,0 +1,54 @@
+<div xmlns="http://www.w3.org/1999/html">
+  <button class="create-game" (click)="CreateGame(); ">
+    Create Game
+  </button>
+</div>
+
+<div>
+  <button class="join-game" (click)="Join(); ">
+    Join A Game
+  </button>
+</div>
+
+
+<ng-template #createDialog let-createdata>
+
+  <label>Number of Players:</label>
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="buttons" [value]=3 [(ngModel)]="playerNumber">
+    3
+  </label>
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="buttons" [value]=4 [(ngModel)]="playerNumber">
+    4
+  </label>
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="buttons" [value]=5 [(ngModel)]="playerNumber">
+    5
+  </label>
+  <label class="form-check-inline">
+    <input class="form-check-input" type="radio" name="buttons" [value]=6 [(ngModel)]="playerNumber">
+    6
+  </label>
+
+  <hr>
+
+  <button mat-button mat-dialog-close="dialog closed">Close</button>
+  <button mat-button mat-dialog-close="room created" (click)="CreateGameDialog();">Create</button>
+
+</ng-template>
+
+<ng-template #joinDialog>
+  <h5>Join Game:</h5>
+  <div>
+    <label for="game-code">Code: </label>
+    <input id="game-code" #gameCode/>
+    <br><br>
+
+    <button mat-button mat-dialog-close="dialog closed">Close</button>
+    <button mat-button mat-dialog-close="joined room"(click)="JoinGameDialog(gameCode.value); gameCode.value=''">
+      Join
+    </button>
+
+  </div>
+</ng-template>
