@@ -1,8 +1,8 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnInit,} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {Router} from "@angular/router";
 import {Card} from "../Card";
-import {CARDS} from "../mock-cards";
+import {IngameService} from "../ingame.service";
 
 @Component({
   selector: 'app-player',
@@ -11,27 +11,28 @@ import {CARDS} from "../mock-cards";
 })
 export class PlayerComponent implements OnInit {
 
-  cards = CARDS;
+  cards: Card[]=[];
   showButton: boolean = false;
   selectedCard?: Card
   @Input() playerClue: String=""
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog, private router: Router,private ingameService: IngameService){
   }
 
   ngOnInit(): void {
-    this.shuffleArray(this.cards)
-    this.cards=this.cards.sort(() => Math.random() - Math.random()).slice(0, 6)
+    this.getCards();
   }
 
-  shuffleArray(anArray: any[]): any[] {
-    return anArray.map(a => [Math.random(), a])
-      .sort((a, b) => a[0] - b[0])
-      .map(a => a[1]);
-  }
   cardClicked(index: number): void {
     console.log("clicked")
     this.selectedCard = this.cards[index];
-    console.log(this.selectedCard.imageId)
+    console.log(this.selectedCard.imageURL)
+  }
+  getCards(): void {
+    this.ingameService.getCards()
+      .subscribe(cards => {
+        console.log("Cards= ", cards);
+        this.cards = cards;
+      });
   }
 }

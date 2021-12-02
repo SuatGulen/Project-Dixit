@@ -1,5 +1,8 @@
 <app-userlist></app-userlist>
 
+<h1>Message from Service : {{username}}</h1>
+  <button (click)="newMessage()">Change Message</button>
+
 <div *ngIf="username!= null && username==='admin'">
   <app-storyteller></app-storyteller>
 </div>

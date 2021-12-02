@@ -1,8 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {Router} from "@angular/router";
 import {Card} from "../Card";
-import {CARDS} from "../mock-cards";
 
 @Component({
   selector: 'app-storyteller',
@@ -11,13 +9,13 @@ import {CARDS} from "../mock-cards";
 })
 export class StorytellerComponent implements OnInit {
 
-  cards = CARDS;
+  cards: Card[];
   showButton: boolean = false;
   selectedCard?: Card
-
   @Input() storyClue: string = "storyclue";
 
-  constructor(public dialog: MatDialog, private router: Router) {
+  constructor(public dialog: MatDialog,) {
+    this.cards=[];
   }
 
   ngOnInit(): void {
@@ -32,7 +30,6 @@ export class StorytellerComponent implements OnInit {
   }
   cardClicked(index: number): void {
     this.selectedCard = this.cards[index];
-    console.log(this.selectedCard.imageId)
   }
 
   SendClue() {

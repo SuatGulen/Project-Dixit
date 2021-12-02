@@ -1,8 +1,11 @@
 export interface ICard {
-  imageId: string;
+  id: number;
+  imageURL: string;
 }
 
 export class Card {
-  constructor(public imageId: string) {
+  constructor(public id: number,  public imageURL: string) {
+    this.imageURL=imageURL;
+    this.id=id
   }
 }

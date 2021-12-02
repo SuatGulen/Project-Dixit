@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {LoginService} from "../login.service";
 
 @Component({
   selector: 'app-login',
@@ -10,16 +11,16 @@ export class LoginComponent implements OnInit {
 
   username: string="";
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
+    this.loginService.sharedMessage.subscribe(message => this.username = message)
   }
 
 
   OnClick(name: string):void{
     this.username=name;
 
-    console.log(this.username);
     this.router.navigateByUrl('/mainmenu');
 
   }

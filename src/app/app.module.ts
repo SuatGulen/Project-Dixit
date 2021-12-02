@@ -25,6 +25,7 @@ import {MatInputModule} from "@angular/material/input";
 import { StorytellerComponent } from './storyteller/storyteller.component';
 import { PlayerComponent } from './player/player.component';
 import { IngameComponent } from './ingame/ingame.component';
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { IngameComponent } from './ingame/ingame.component';
     MatGridListModule,
     MatToolbarModule,
     MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

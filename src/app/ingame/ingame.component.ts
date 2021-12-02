@@ -1,6 +1,8 @@
-import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component,OnInit, ViewChild} from '@angular/core';
 import {StorytellerComponent} from "../storyteller/storyteller.component";
 import {LoginComponent} from "../login/login.component";
+import {LoginService} from "../login.service";
+import {Card} from "../Card";
 
 @Component({
   selector: 'app-ingame',
@@ -10,7 +12,9 @@ import {LoginComponent} from "../login/login.component";
 export class IngameComponent implements OnInit {
 
   parentClue!: string;
-  @Input() username:string="";
+  username:string="";
+  cards: Card[] = [];
+
 
   @ViewChild(StorytellerComponent)
   set appStoryteller(storyteller: StorytellerComponent) {
@@ -23,9 +27,14 @@ export class IngameComponent implements OnInit {
     this.username = logincomponent.username;
   };
 
-  constructor() { }
+  constructor(private loginService: LoginService,) { }
 
   ngOnInit(): void {
+    this.loginService.sharedMessage.subscribe(message => this.username = message)
+  }
+
+  newMessage() {
+    this.loginService.nextMessage("Second Message")
   }
 
 }
