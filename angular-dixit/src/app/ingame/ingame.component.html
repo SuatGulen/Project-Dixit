@@ -1,0 +1,50 @@
+<mat-grid-list cols="7" rowHeight="100px">
+
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="8"
+        [style.background]="'LightSteelBlue'">
+
+        <div><app-userlist></app-userlist>
+        <br>
+        <div *ngIf="isHost">
+            <button mat-raised-button color="primary" class="add-button" [disabled]="clicked" (click)="startButton(); clicked = true;">
+                Start Game
+            </button>
+        </div>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+        [colspan]="5"
+        [rowspan]="8"
+        [style.background]="'Azure'">
+
+        <div *ngIf="gameStarted">
+            <div *ngIf="isSt; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+                <app-storyteller></app-storyteller>
+            </ng-template>
+            <ng-template #elseBlock>
+                <app-player></app-player>
+            </ng-template>
+        </div>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<ng-template #createDialog let-createdata>
+    <img [src] ="answerCard?.imageURL" width="180" height="270" alt = "imageURL ">
+    <h2>Scores</h2>
+
+    <ul class="users" style="list-style: none;">
+        <li *ngFor="let user of users">
+            +{{user.gainedPoint}} | {{user.username}}
+        </li>
+    </ul>
+    <hr>
+        <button mat-button mat-dialog-close="dialog closed">
+            Close
+        </button>
+</ng-template>
+

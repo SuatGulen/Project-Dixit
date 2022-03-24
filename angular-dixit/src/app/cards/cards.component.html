@@ -1,0 +1,12 @@
+<div class="card" (click)="cardClicked.emit()">
+
+<label>
+    <div *ngIf="data != null" class="face front">
+    <input type="radio" name="test" value="small">
+          <img [src] ="data.imageURL"
+               width="180"
+               height="270" alt = "imageURL ">
+  </div>
+
+</label>
+</div>

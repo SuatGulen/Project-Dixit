@@ -1,0 +1,24 @@
+<div fxLayout="row">
+    <div flex="20">
+        <ul class="users">
+            <li *ngFor="let user of users" (click)="onSelect() ">
+                <span class="badge">{{user.point}}</span> {{user.username}}
+                <img *ngIf="user.storyteller != null && user.storyteller"
+                    [src]="stLogo"
+                         width="20"
+                         height="20" alt="imageURL">
+                <img *ngIf=" showTick != null && showTick == true"
+                     [src]="tickLogo"
+                     width="20"
+                     height="20" alt="imageURL ">
+            </li>
+        </ul>
+        <ng-template #userDetailDialog>
+            <h5>Some Profile Details</h5>
+            <br><br>
+        </ng-template>
+    </div>
+    <div flex="70">
+        <router-outlet></router-outlet>
+    </div>
+</div>

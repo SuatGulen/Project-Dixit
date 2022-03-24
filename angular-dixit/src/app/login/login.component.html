@@ -1,0 +1,47 @@
+<mat-grid-list cols="3" rowHeight="100px">
+
+
+    <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="4">
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="4">
+    </mat-grid-tile>
+
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="3"
+        [style.background]="'AliceBlue'">
+
+        <div>
+
+            <button mat-raised-button color="primary" class="add-button" [disabled]="clicked" (click)="connect(); clicked = true;">
+                Connect
+            </button>
+            <p> </p>
+            <mat-form-field class="example-form-field" appearance="fill">
+                <mat-label>Username</mat-label>
+                <input matInput type="text" [(ngModel)]="username">
+                <button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <p> </p>
+            <button mat-raised-button color="primary" class="add-button" [disabled]="!clicked" (click)="buttonClicked(); clicked = true;">
+                Login
+            </button>
+
+        </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="4">
+    </mat-grid-tile>
+
+
+</mat-grid-list>
+

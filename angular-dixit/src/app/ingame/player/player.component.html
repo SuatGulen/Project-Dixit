@@ -1,0 +1,57 @@
+<div *ngIf="!showSelectedCards">
+    <div class="p-16">
+        <p class="text-center">These are your cards</p>
+
+        <div *ngIf="!clueExist">
+            <mat-label>Wait until the storyteller gives you a clue</mat-label>
+            <br>
+
+        </div>
+
+        <div *ngIf="clueExist">
+            Storyteller's clue is : <b>{{playerClue}}</b><br>
+            <mat-label>Choose one of your cards according to describe</mat-label>
+            <br>
+        </div>
+    </div>
+
+    <br>
+    <div class="grid p-16">
+        <app-cards *ngFor="let c of cards; let idx=index" [data]="c" (cardClicked)="cardClicked(idx)">
+        </app-cards>
+    </div>
+
+    <div *ngIf="clueExist">
+
+        <div *ngIf="showButton">
+            <button mat-mini-fab color="primary" (click)="SendCard();">
+                <mat-icon>play_arrow</mat-icon>
+            </button>
+        </div>
+        <br>
+        <div *ngIf="!showButton">
+            <mat-label>Wait for other players..</mat-label>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="showSelectedCards">
+    <div class="p-16">
+        <p class="text-center">Choose the card you think it's the storyteller's card</p>
+        <div class="grid p-16">
+            <app-cards *ngFor="let c of selectedCards; let idx=index" [data]="c" (cardClicked)="chooseCard(idx)">
+            </app-cards>
+        </div>
+    </div>
+
+    <div *ngIf="isCardChosen">
+        <button mat-mini-fab color="primary" [disabled]="clicked" (click)="SendChosenCard(); clicked = true;">
+            <mat-icon>play_arrow</mat-icon>
+        </button>
+    </div>
+    <br>
+    <div *ngIf="clicked">
+        <mat-label>Wait for other players..</mat-label>
+    </div>
+</div>
